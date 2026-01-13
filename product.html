@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details - AIR</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <style>
+        .product-detail {
+            padding: 120px 5%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .gallery {
+            border-radius: 20px;
+            overflow: hidden;
+            background: #222;
+        }
+
+        .gallery img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .details-info h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+
+        .details-info .price {
+            font-size: 2rem;
+            color: var(--accent-color);
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .details-info .desc {
+            font-size: 1.1rem;
+            color: #aaa;
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+
+        .options-group {
+            margin-bottom: 20px;
+        }
+
+        .options-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .color-options,
+        .size-options {
+            display: flex;
+            gap: 10px;
+        }
+
+        .size-box {
+            width: 50px;
+            height: 50px;
+            border: 1px solid #444;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: all 0.2s;
+        }
+
+        .size-box:hover,
+        .size-box.selected {
+            background: white;
+            color: black;
+            border-color: white;
+        }
+
+        .add-btn {
+            background: var(--accent-color);
+            color: black;
+            border: none;
+            width: 100%;
+            padding: 15px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 20px;
+            border-radius: 10px;
+            transition: background 0.3s;
+        }
+
+        .add-btn:hover {
+            background: red;
+        }
+
+        @media (max-width: 768px) {
+            .product-detail {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <a href="index.html" class="logo">AIR.</a>
+        <div class="nav-links">
+            <a href="men.html">Men</a>
+            <a href="women.html">Women</a>
+            <a href="kids.html">Kids</a>
+            <a href="cart.html" style="position: relative;">
+                Cart
+                <span class="nav-cart-count">0</span>
+            </a>
+        </div>
+    </nav>
+
+    <div id="product-root" class="product-detail">
+        <!-- Content injected by JS -->
+    </div>
+
+    <footer style="text-align: center; padding: 40px; border-top: 1px solid #222; font-size: 0.9rem; color: #ccc;">
+        <p>&copy; 2026 AIR Footwear. All rights reserved.</p>
+        <p style="margin-top: 10px; opacity: 0.8; font-size: 0.85rem;">This is a demo website made by Akshat Jain.</p>
+    </footer>
+
+    <script src="js/products.js"></script>
+    <script src="js/shop.js"></script>
+    <script src="js/navigation.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const params = new URLSearchParams(window.location.search);
+            const id = params.get('id');
+            const product = products.find(p => p.id === id);
+
+            if (!product) {
+                document.getElementById('product-root').innerHTML = "<h1>Product not found</h1>";
+                return;
+            }
+
+            let selectedSize = null;
+
+            const html = `
+                <div class="gallery">
+                    <img src="${product.image}" alt="${product.name}">
+                </div>
+                <div class="details-info">
+                    <h1>${product.name}</h1>
+                    <span class="price">₹${product.price}</span>
+                    <p class="desc">${product.description}</p>
+                    
+                    <div class="options-group">
+                        <label>Size (US)</label>
+                        <div class="size-options">
+                            ${product.sizes.map(s => `
+                                <div class="size-box" onclick="selectSize(this, ${s})">${s}</div>
+                            `).join('')}
+                        </div>
+                    </div>
+
+                    <button class="add-btn" onclick="handleAddToCart()">ADD TO CART</button>
+                </div>
+            `;
+
+            document.getElementById('product-root').innerHTML = html;
+
+            window.selectSize = (el, size) => {
+                document.querySelectorAll('.size-box').forEach(b => b.classList.remove('selected'));
+                el.classList.add('selected');
+                selectedSize = size;
+            };
+
+            window.handleAddToCart = () => {
+                addToCart(product.id, 1, selectedSize);
+            };
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AIR - Premium Comfort</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <a href="index.html" class="logo">AIR.</a>
+        <div class="nav-links">
+            <a href="men.html">Men</a>
+            <a href="women.html">Women</a>
+            <a href="kids.html">Kids</a>
+            <a href="cart.html" style="position: relative;">
+                Cart
+                <span class="nav-cart-count">0</span>
+            </a>
+        </div>
+        <div class="menu-btn">☰</div>
+    </nav>
+
+    <!-- Main Scroll Container -->
+    <section class="animation-container">
+        <div class="sticky-wrapper">
+            <div class="split-layout">
+
+                <!-- Left Content: Storytelling -->
+                <div class="content-side">
+                    <div class="product-header">
+                        <span class="eyebrow">The New Standard</span>
+                        <h1>Air Velocity Pro</h1>
+                        <p class="tagline">Featherlight comfort for the modern explorer.</p>
+                    </div>
+
+                    <div class="info-block">
+                        <span class="label">Comfort Level</span>
+                        <div class="rating-bar">
+                            <div class="fill" style="width: 95%;"></div>
+                        </div>
+                        <p class="micro-text">Max cushioning with zero weight penalty.</p>
+                    </div>
+
+                    <div class="info-block">
+                        <span class="label">Best Use Cases</span>
+                        <ul class="use-cases">
+                            <li>✈️ Travel</li>
+                            <li>🚶 Daily Commute</li>
+                            <li>🏙️ City Walking</li>
+                        </ul>
+                    </div>
+
+                    <div class="info-block">
+                        <span class="label">Fit Suggestion</span>
+                        <p class="fit-text">True to size. Adaptive mesh creates a custom-like fit within minutes of
+                            wear.</p>
+                    </div>
+
+                    <div class="cta-group">
+                        <a href="product.html?id=m1" class="primary-btn">Shop Now</a>
+                        <span class="price">₹14,999</span>
+                    </div>
+                </div>
+
+                <!-- Right Content: 3D Animation -->
+                <div class="visual-side">
+                    <div class="canvas-container">
+                        <canvas id="hero-canvas"></canvas>
+                    </div>
+                    <!-- Scroll indicator specifically for the animation context -->
+                    <div class="scroll-hint">
+                        <span>Scroll to Rotate</span>
+                        <div class="mouse-icon"></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Grid (Below fold) -->
+    <section class="features">
+        <div class="feature-card">
+            <h3>Ultra Light</h3>
+            <p>Engineered with aerospace-grade materials for zero-gravity feel.</p>
+        </div>
+        <div class="feature-card">
+            <h3>Adaptive Fit</h3>
+            <p>Smart fibers that adjust to your foot shape instantly.</p>
+        </div>
+        <div class="feature-card">
+            <h3>Max Energy</h3>
+            <p>Our most responsive cushioning ever created.</p>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 AIR Footwear. All rights reserved.</p>
+        <p style="margin-top: 10px; opacity: 0.6; font-size: 0.75rem;">This is a demo website made by Akshat Jain.</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/products.js"></script>
+    <script src="js/shop.js"></script>
+    <script src="js/scrollAnimation.js"></script>
+    <script src="js/navigation.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialize Animation with new configuration
+            new ScrollAnimator({
+                containerSelector: '.animation-container',
+                stickySelector: '.sticky-wrapper',
+                canvasSelector: '#hero-canvas',
+                folderPath: 'Shoes/',
+                frameCount: 72,
+                frameNamePattern: (i) => `ezgif-frame-${i.toString().padStart(3, '0')}.jpg`
+            });
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Women - AIR</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <nav>
+        <a href="index.html" class="logo">AIR.</a>
+        <div class="nav-links">
+            <a href="men.html">Men</a>
+            <a href="women.html" class="active">Women</a>
+            <a href="kids.html">Kids</a>
+            <a href="cart.html" style="position: relative;">
+                Cart
+                <span class="nav-cart-count">0</span>
+            </a>
+        </div>
+        <div class="menu-btn">☰</div>
+    </nav>
+
+    <!-- Scroll Animation Section for Women -->
+    <section class="animation-container">
+        <div class="sticky-wrapper">
+            <div class="split-layout">
+
+                <!-- Left Content: Storytelling -->
+                <div class="content-side">
+                    <div class="product-header">
+                        <span class="eyebrow">Performance Redefined</span>
+                        <h1>Cloud Runner Girl</h1>
+                        <p class="tagline">Engineered for women who lead the pack.</p>
+                    </div>
+
+                    <div class="info-block">
+                        <span class="label">Agility Rating</span>
+                        <div class="rating-bar">
+                            <div class="fill" style="width: 90%;"></div>
+                        </div>
+                        <p class="micro-text">Responsive snap with every stride.</p>
+                    </div>
+
+                    <div class="info-block">
+                        <span class="label">Best Use Cases</span>
+                        <ul class="use-cases">
+                            <li>🏃‍♀️ Marathon</li>
+                            <li>🧘‍♀️ Yoga Warmup</li>
+                            <li>🛍️ Active Lifestyle</li>
+                        </ul>
+                    </div>
+
+                    <div class="info-block">
+                        <span class="label">Fit Suggestion</span>
+                        <p class="fit-text">Sculpted arch support. Fits true to size for a locked-in feel.</p>
+                    </div>
+
+                    <div class="cta-group">
+                        <a href="#shop" class="primary-btn">View Collection</a>
+                        <span class="price">From ₹3,999</span>
+                    </div>
+                </div>
+
+                <!-- Right Content: 3D Animation -->
+                <div class="visual-side">
+                    <div class="canvas-container">
+                        <canvas id="women-canvas"></canvas>
+                    </div>
+                    <div class="scroll-hint">
+                        <span>Scroll for 360° View</span>
+                        <div class="mouse-icon"></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Shop Section -->
+    <div class="shop-container" id="shop">
+
+        <!-- Filters -->
+        <aside class="filters">
+            <div class="filter-group">
+                <h3>Sort By</h3>
+                <select id="sortFilter">
+                    <option value="default">Default</option>
+                    <option value="priceLow">Price: Low to High</option>
+                    <option value="priceHigh">Price: High to Low</option>
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <h3>Collection</h3>
+                <select id="tagFilter">
+                    <option value="all">All Collections</option>
+                    <option value="New Collection">New Collection</option>
+                    <option value="Old Collection">Old Collection</option>
+                    <option value="Extra Discounted">Extra Discounted</option>
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <h3>Type</h3>
+                <select id="typeFilter">
+                    <option value="all">All Types</option>
+                    <option value="running">Running</option>
+                    <option value="lifestyle">Lifestyle</option>
+                    <option value="training">Training</option>
+                </select>
+            </div>
+        </aside>
+
+        <!-- Product Grid -->
+        <main class="product-grid">
+            <!-- Products injected by JS -->
+        </main>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2026 AIR Footwear. All rights reserved.</p>
+        <p style="margin-top: 10px; opacity: 0.6; font-size: 0.75rem;">This is a demo website made by Akshat Jain.</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/products.js"></script>
+    <script src="js/shop.js"></script>
+    <script src="js/scrollAnimation.js"></script>
+    <script src="js/navigation.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // 1. Initialize Shop Grid
+            const shop = new ShopUI(products);
+            shop.init('women');
+
+            // 2. Initialize Scroll Animation
+            new ScrollAnimator({
+                containerSelector: '.animation-container',
+                stickySelector: '.sticky-wrapper',
+                canvasSelector: '#women-canvas',
+                folderPath: 'WOMEN WEAR/',
+                frameCount: 135,
+                frameNamePattern: (i) => `ezgif-frame-${i.toString().padStart(3, '0')}.jpg`
+            });
+        });
+    </script>
+</body>
+
+</html>

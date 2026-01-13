@@ -1,0 +1,617 @@
+/* Variable Definitions */
+:root {
+    --bg-color: #0a0a0a;
+    --card-bg: #151515;
+    --text-color: #e0e0e0;
+    --text-muted: #888;
+    --accent-color: #fff;
+    --font-main: 'Inter', -apple-system, sans-serif;
+    --nav-height: 70px;
+}
+
+/* Global Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: var(--font-main);
+    overflow-x: hidden;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4 {
+    font-weight: 600;
+    letter-spacing: -0.02em;
+}
+
+/* Navigation */
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: var(--nav-height);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 40px;
+    z-index: 1000;
+    background: rgba(10, 10, 10, 0.9);
+    backdrop-filter: blur(10px);
+}
+
+.logo {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #fff;
+    text-decoration: none;
+    letter-spacing: 1px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 30px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: #fff;
+}
+
+.nav-cart-count {
+    background: #fff;
+    color: #000;
+    border-radius: 50%;
+    font-size: 0.7rem;
+    padding: 2px 6px;
+    margin-left: 5px;
+}
+
+/* Menu Button - Always visible now as requested for "Info" */
+.menu-btn {
+    display: block !important;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #fff;
+    margin-left: 30px;
+    /* Separator from links */
+}
+
+/* --- SIDE DRAWER --- */
+.side-drawer {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 350px;
+    height: 100vh;
+    background: #111;
+    z-index: 2000;
+    transform: translateX(100%);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    border-left: 1px solid #333;
+    display: flex;
+    flex-direction: column;
+}
+
+.side-drawer.open {
+    transform: translateX(0);
+}
+
+.drawer-header {
+    padding: 20px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #222;
+}
+
+.drawer-header h2 {
+    font-size: 1.2rem;
+    color: #fff;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+.drawer-content {
+    padding: 30px;
+    overflow-y: auto;
+    flex-grow: 1;
+}
+
+.drawer-section {
+    margin-bottom: 40px;
+}
+
+.drawer-section h3 {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    color: #666;
+    margin-bottom: 15px;
+    letter-spacing: 1px;
+}
+
+.drawer-links {
+    list-style: none;
+}
+
+.drawer-links li {
+    margin-bottom: 15px;
+}
+
+.drawer-links a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.drawer-links a:hover {
+    color: #999;
+}
+
+.contact-info {
+    list-style: none;
+}
+
+.contact-info li {
+    margin-bottom: 10px;
+    color: #aaa;
+    font-size: 0.9rem;
+}
+
+.drawer-footer {
+    padding: 30px;
+    border-top: 1px solid #222;
+    display: flex;
+    gap: 20px;
+}
+
+.social-link {
+    color: #666;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+.social-link:hover {
+    color: #fff;
+}
+
+/* Backdrop */
+.drawer-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: -1;
+    /* Behind drawer itself */
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s;
+}
+
+.side-drawer.open .drawer-backdrop {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Styles for rest of site */
+
+/* Animation Container & Layout */
+.animation-container {
+    height: 400vh;
+    /* Scroll distance */
+    position: relative;
+    background: radial-gradient(circle at 70% 50%, #1a1a1a 0%, #0a0a0a 60%);
+}
+
+.sticky-wrapper {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+}
+
+.split-layout {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+/* Left Side: Content */
+.content-side {
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-right: 60px;
+    opacity: 0.9;
+}
+
+.eyebrow {
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    color: var(--text-muted);
+    margin-bottom: 15px;
+    display: block;
+}
+
+.product-header h1 {
+    font-size: 3.5rem;
+    line-height: 1.1;
+    margin-bottom: 15px;
+    background: linear-gradient(to bottom right, #fff, #999);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.tagline {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    margin-bottom: 40px;
+    max-width: 400px;
+}
+
+.info-block {
+    margin-bottom: 30px;
+}
+
+.label {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    color: #555;
+    margin-bottom: 8px;
+    display: block;
+    font-weight: 600;
+}
+
+.rating-bar {
+    width: 200px;
+    height: 4px;
+    background: #222;
+    border-radius: 2px;
+    margin-bottom: 8px;
+}
+
+.rating-bar .fill {
+    height: 100%;
+    background: #fff;
+    border-radius: 2px;
+}
+
+.micro-text {
+    font-size: 0.85rem;
+    color: #999;
+}
+
+.use-cases {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.use-cases li {
+    font-size: 0.9rem;
+    color: #ccc;
+    background: #151515;
+    padding: 6px 12px;
+    border-radius: 20px;
+    border: 1px solid #222;
+}
+
+.fit-text {
+    font-size: 0.9rem;
+    color: #ccc;
+    line-height: 1.6;
+}
+
+.cta-group {
+    margin-top: 40px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.primary-btn {
+    background: #fff;
+    color: #000;
+    padding: 12px 30px;
+    border-radius: 30px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: transform 0.2s, background 0.2s;
+}
+
+.primary-btn:hover {
+    transform: translateY(-2px);
+    background: #e0e0e0;
+}
+
+.price {
+    font-size: 1.1rem;
+    color: #fff;
+    font-weight: 500;
+}
+
+/* Right Side: Visual */
+.visual-side {
+    width: 55%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.canvas-container {
+    width: 100%;
+    height: 60vh;
+    /* Restrict height */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+canvas {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    image-rendering: -webkit-optimize-contrast;
+}
+
+.scroll-hint {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    opacity: 0.4;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+}
+
+/* Footer & Grid sections (Keep Minimal) */
+.features {
+    padding: 80px 40px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    background: #0f0f0f;
+}
+
+.feature-card {
+    padding: 30px;
+    border-left: 1px solid #333;
+}
+
+.feature-card h3 {
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+.feature-card p {
+    color: #777;
+    font-size: 0.9rem;
+}
+
+footer {
+    padding: 40px;
+    border-top: 1px solid #222;
+    text-align: center;
+    font-size: 0.8rem;
+    color: #555;
+}
+
+/* Shop Layout Styles (missing from Step 99 update? Adding back just in case) */
+.shop-container {
+    padding: 80px 40px;
+    display: flex;
+    gap: 40px;
+}
+
+.filters {
+    width: 250px;
+    flex-shrink: 0;
+}
+
+.product-grid {
+    flex-grow: 1;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+.product-card {
+    height: 380px;
+    /* Taller to fit tag */
+    background: #111;
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+    perspective: 1000px;
+}
+
+.card-inner {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-image {
+    height: 60%;
+    position: relative;
+}
+
+/* Tag Badge */
+.product-tag {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 20px;
+    z-index: 10;
+    color: #000;
+}
+
+.tag-new {
+    background: #fff;
+}
+
+.tag-discount {
+    background: #ff4757;
+    color: #fff;
+}
+
+.tag-old {
+    background: #555;
+    color: #fff;
+}
+
+.card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.card-info {
+    padding: 15px;
+}
+
+.card-info h4 {
+    font-size: 1rem;
+    color: #fff;
+}
+
+.card-info .price {
+    font-size: 0.9rem;
+    color: #ccc;
+    display: block;
+    margin-top: 5px;
+}
+
+.view-btn {
+    text-decoration: none;
+    color: #fff;
+    font-size: 0.85rem;
+    border: 1px solid #333;
+    padding: 5px 15px;
+    border-radius: 20px;
+    transition: all 0.3s;
+    background: transparent;
+    position: relative;
+    z-index: 5;
+    /* Ensure clickable */
+    cursor: pointer;
+}
+
+/* Fix for buttons */
+.view-btn {
+    text-decoration: none;
+    color: #fff;
+    font-size: 0.85rem;
+    border: 1px solid #333;
+    padding: 5px 15px;
+    border-radius: 20px;
+    transition: all 0.3s;
+    background: transparent;
+}
+
+.view-btn:hover {
+    background: #fff;
+    color: #000;
+    /* FIXED: Black text on white hover */
+    border-color: #fff;
+}
+
+.price-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.add-btn {
+    /* Ensure Product Page button is also fixed */
+    background: var(--accent-color);
+    color: black;
+    /* Black text on white */
+}
+
+.add-btn:hover {
+    background: #ddd;
+    /* Light grey hover */
+    color: black;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 900px) {
+    .split-layout {
+        flex-direction: column;
+        padding: 0 20px;
+        justify-content: flex-start;
+        padding-top: var(--nav-height);
+    }
+
+    .content-side {
+        width: 100%;
+        padding-right: 0;
+        margin-bottom: 20px;
+        padding-top: 20px;
+        order: 1;
+    }
+
+    .visual-side {
+        width: 100%;
+        height: 50vh;
+        order: 2;
+    }
+
+    .product-header h1 {
+        font-size: 2.5rem;
+    }
+
+    .shop-container {
+        flex-direction: column;
+    }
+
+    .filters {
+        width: 100%;
+        margin-bottom: 30px;
+    }
+}

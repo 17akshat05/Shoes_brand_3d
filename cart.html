@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Cart - AIR</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <style>
+        .cart-container {
+            padding: 120px 5%;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .cart-item {
+            display: flex;
+            align-items: center;
+            background: #1a1a1a;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 10px;
+        }
+
+        .cart-item img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-right: 20px;
+        }
+
+        .item-info {
+            flex-grow: 1;
+        }
+
+        .item-info h4 {
+            margin-bottom: 5px;
+        }
+
+        .remove-btn {
+            background: transparent;
+            border: 1px solid #444;
+            color: #888;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <a href="index.html" class="logo">AIR.</a>
+        <div class="nav-links">
+            <a href="men.html">Men</a>
+            <a href="women.html">Women</a>
+            <a href="kids.html">Kids</a>
+            <a href="cart.html" style="position: relative;">
+                Cart
+                <span class="nav-cart-count">0</span>
+            </a>
+        </div>
+    </nav>
+
+    <div class="cart-container">
+        <h1>Shopping Cart</h1>
+        <div id="cart-items">
+            <!-- JS -->
+        </div>
+        <div style="margin-top: 30px; text-align: right;">
+            <h2 id="total-price">Total: ₹0</h2>
+            <button onclick="alert('This is a demo website. Checkout is disabled.')"
+                style="margin-top: 15px; padding: 15px 30px; background: #fff; color: #000; border: none; border-radius: 30px; font-weight: 700; cursor: pointer;">PROCEED
+                TO CHECKOUT</button>
+        </div>
+    </div>
+
+    <footer style="text-align: center; padding: 40px; border-top: 1px solid #222; font-size: 0.9rem; color: #ccc;">
+        <p>&copy; 2026 AIR Footwear. All rights reserved.</p>
+        <p style="margin-top: 10px; opacity: 0.8; font-size: 0.85rem;">This is a demo website made by Akshat Jain.</p>
+    </footer>
+
+    <script src="js/products.js"></script>
+    <script src="js/shop.js"></script>
+    <script src="js/navigation.js"></script>
+    <script>
+        function renderCart() {
+            const container = document.getElementById('cart-items');
+            if (cart.length === 0) {
+                container.innerHTML = "<p>Your cart is empty.</p>";
+                updateTotal();
+                return;
+            }
+
+            container.innerHTML = cart.map((item, index) => `
+                <div class="cart-item">
+                    <img src="${item.image}" alt="${item.name}">
+                    <div class="item-info">
+                        <h4>${item.name}</h4>
+                        <p>Size: ${item.size} | Qty: ${item.quantity}</p>
+                    </div>
+                    <div style="margin-right: 20px;">₹${item.price * item.quantity}</div>
+                    <button class="remove-btn" onclick="removeItem(${index})">Remove</button>
+                </div>
+            `).join('');
+
+            updateTotal();
+        }
+
+        function removeItem(index) {
+            cart.splice(index, 1);
+            localStorage.setItem('air_cart', JSON.stringify(cart));
+            updateCartCount();
+            renderCart();
+        }
+
+        function updateTotal() {
+            const total = cart.reduce((acc, item) => acc + (item.price * item.quantity), 0);
+            document.getElementById('total-price').innerText = `Total: ₹${total}`;
+        }
+
+        document.addEventListener('DOMContentLoaded', renderCart);
+    </script>
+</body>
+
+</html>
