@@ -584,13 +584,24 @@ footer {
 /* Mobile Responsiveness - COMPLETELY REWRITTEN FOR FIX */
 @media (max-width: 900px) {
 
-    /* Hide desktop nav links to clean header */
+    /* Fix Mobile Nav: Hide text links but KEEP Cart */
     .nav-links {
+        display: flex !important;
+        /* Re-enable container */
+        gap: 15px;
+    }
+
+    /* Hide specific text links (Men, Women, Kids are first 3) */
+    .nav-links a:not([href="cart.html"]) {
         display: none !important;
     }
 
-    .animation-container {
-        height: 300vh;
+    /* Ensure Cart looks good */
+    .nav-links a[href="cart.html"] {
+        display: flex;
+        font-size: 0.95rem;
+        /* Slightly larger for touch */
+        color: #fff;
     }
 
     /* Fix Overflow & Vertical Layout */
