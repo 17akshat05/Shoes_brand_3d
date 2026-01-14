@@ -47,6 +47,35 @@
             cursor: pointer;
             border-radius: 5px;
         }
+
+        .qty-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 5px;
+            background: #252525;
+            width: fit-content;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+
+        .qty-btn {
+            background: #444;
+            color: #fff;
+            border: none;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .qty-btn:hover {
+            background: #666;
+        }
     </style>
 </head>
 
@@ -100,14 +129,37 @@
                     <img src="${item.image}" alt="${item.name}">
                     <div class="item-info">
                         <h4>${item.name}</h4>
-                        <p>Size: ${item.size} | Qty: ${item.quantity}</p>
+                        <p style="color:#aaa; font-size:0.9rem; margin-bottom:5px;">Size: ${item.size}</p>
+                        
+                        <!-- Quantity Control -->
+                        <div class="qty-wrapper">
+                            <button class="qty-btn" onclick="changeQty(${index}, -1)">−</button>
+                            <span style="font-weight:600; min-width:20px; text-align:center;">${item.quantity}</span>
+                            <button class="qty-btn" onclick="changeQty(${index}, 1)">+</button>
+                        </div>
                     </div>
-                    <div style="margin-right: 20px;">₹${item.price * item.quantity}</div>
+                    
+                    <div style="text-align:right; margin-right: 20px;">
+                        <div style="font-weight:bold; font-size:1.1rem;">₹${item.price * item.quantity}</div>
+                        <div style="font-size:0.8rem; color:#666;">₹${item.price} each</div>
+                    </div>
+
                     <button class="remove-btn" onclick="removeItem(${index})">Remove</button>
                 </div>
             `).join('');
 
             updateTotal();
+        }
+
+        function changeQty(index, delta) {
+            if (cart[index].quantity + delta < 1) return; // Prevent 0
+
+            cart[index].quantity += delta;
+
+            // Save & Re-render
+            localStorage.setItem('air_cart', JSON.stringify(cart));
+            updateCartCount(); // From shop.js (updates nav bubble)
+            renderCart();
         }
 
         function removeItem(index) {
