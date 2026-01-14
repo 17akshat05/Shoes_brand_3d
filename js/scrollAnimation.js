@@ -34,8 +34,17 @@ class ScrollAnimator {
 
         // Defer sizing until at least one image is loaded to know aspect ratio
         // But we can set initial listeners
-        window.addEventListener('resize', () => this.updateCanvasSize());
-        window.addEventListener('scroll', () => this.handleScroll());
+
+        // Optimize: Debounce resize to prevent thrashing
+        let resizeTimeout;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(() => this.updateCanvasSize(), 150);
+        });
+
+        // Optimize: Scroll is already raf-throttled via logic below, 
+        // but we ensure lightweight calculations.
+        window.addEventListener('scroll', () => this.handleScroll(), { passive: true });
     }
 
     generatePath(index) {

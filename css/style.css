@@ -384,6 +384,10 @@ nav {
     display: flex;
     justify-content: center;
     align-items: center;
+    will-change: transform;
+    /* Hardware Acceleration Hint */
+    transform: translateZ(0);
+    /* Force GPU layer */
 }
 
 canvas {
@@ -584,11 +588,21 @@ footer {
 /* Mobile Responsiveness - COMPLETELY REWRITTEN FOR FIX */
 @media (max-width: 900px) {
 
-    /* Fix Mobile Nav: Hide text links but KEEP Cart */
+    /* Fix Mobile Nav: Align Cart and Menu to the right */
+    nav {
+        padding: 0 20px !important;
+        /* Reduce side padding */
+    }
+
+    /* Push the Nav Links (Cart) to the right, next to Menu */
     .nav-links {
         display: flex !important;
-        /* Re-enable container */
         gap: 15px;
+        margin-left: auto;
+        /* Pushes everything to the right */
+        margin-right: 15px;
+        /* Space between Cart and Menu */
+        align-items: center;
     }
 
     /* Hide specific text links (Men, Women, Kids are first 3) */
@@ -596,12 +610,20 @@ footer {
         display: none !important;
     }
 
-    /* Ensure Cart looks good */
+    /* Ensure Cart looks cleaner */
     .nav-links a[href="cart.html"] {
         display: flex;
-        font-size: 0.95rem;
-        /* Slightly larger for touch */
+        font-size: 0.9rem;
         color: #fff;
+        background: #222;
+        padding: 8px 12px;
+        border-radius: 20px;
+        border: 1px solid #333;
+    }
+
+    .menu-btn {
+        margin-left: 0 !important;
+        /* Remove desktop margin since we use flex gap/margin */
     }
 
     /* Fix Overflow & Vertical Layout */
