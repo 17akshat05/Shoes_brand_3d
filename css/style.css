@@ -579,39 +579,149 @@ footer {
     color: black;
 }
 
-/* Mobile Responsiveness */
+/* Mobile Responsiveness - COMPLETELY REWRITTEN FOR FIX */
 @media (max-width: 900px) {
+
+    /* Hide desktop nav links to clean header */
+    .nav-links {
+        display: none !important;
+    }
+
+    .animation-container {
+        height: 300vh;
+    }
+
+    /* Fix Overflow & Vertical Layout */
     .split-layout {
         flex-direction: column;
-        padding: 0 20px;
-        justify-content: flex-start;
-        padding-top: var(--nav-height);
+        justify-content: center;
+        /* Center content vertically */
+        padding: 80px 20px 20px 20px;
+        /* Add top padding for nav */
+        height: 100vh;
+        width: 100%;
+        overflow: hidden;
+        /* Lock overflow */
     }
 
+    /* Order 1: Text Content Top */
     .content-side {
         width: 100%;
-        padding-right: 0;
-        margin-bottom: 20px;
-        padding-top: 20px;
+        padding: 0;
+        margin: 0;
         order: 1;
+        flex: 0 0 auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: flex-start;
+        margin-bottom: 10px;
+        z-index: 5;
     }
 
+    /* Order 2: Visual Bottom */
     .visual-side {
         width: 100%;
-        height: 50vh;
         order: 2;
+        flex: 1;
+        min-height: 40vh;
+        /* Ensure 3D shoe space */
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        position: relative;
     }
 
+    .canvas-container {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+    }
+
+    canvas {
+        max-width: 95%;
+        max-height: 95%;
+        object-fit: contain;
+    }
+
+    /* Typography & Buttons */
     .product-header h1 {
-        font-size: 2.5rem;
+        font-size: 2rem;
+        margin-bottom: 10px;
+        line-height: 1.1;
     }
 
+    .tagline {
+        font-size: 0.9rem;
+        margin-bottom: 20px;
+    }
+
+    .cta-group {
+        margin-top: 10px;
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+    .primary-btn {
+        padding: 12px 25px;
+        font-size: 0.9rem;
+        width: auto;
+    }
+
+    .price {
+        font-size: 1.1rem;
+    }
+
+    .info-block {
+        display: none !important;
+    }
+
+    /* General Layout Fixes */
     .shop-container {
         flex-direction: column;
+        padding: 40px 20px;
     }
 
     .filters {
         width: 100%;
-        margin-bottom: 30px;
+        margin-bottom: 20px;
+    }
+
+    /* CART PAGE MOBILE FIXES */
+    .cart-container {
+        padding: 100px 20px 40px 20px !important;
+    }
+
+    .cart-item {
+        flex-direction: column;
+        align-items: flex-start;
+        position: relative;
+        padding-bottom: 50px;
+        /* Space for Remove btn */
+    }
+
+    .cart-item img {
+        margin-bottom: 15px;
+        width: 100px;
+        height: 100px;
+    }
+
+    .item-info {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    /* Position Remove Button Absolute Bottom Right */
+    .remove-btn {
+        position: absolute;
+        bottom: 15px;
+        right: 15px;
+        border: 1px solid #444;
+        background: #222;
+        color: #fff;
+        padding: 8px 15px;
+        z-index: 10;
     }
 }
