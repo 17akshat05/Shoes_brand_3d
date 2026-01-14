@@ -731,8 +731,24 @@ footer {
         font-weight: 600;
     }
 
+    /* STRICTLY HIDE INFO BLOCKS to clean up UI */
     .info-block {
         display: none !important;
+    }
+
+    /* Fix Features Grid (Footer) to be 1 column */
+    .features {
+        grid-template-columns: 1fr;
+        /* Stack vertically */
+        padding: 40px 20px;
+        gap: 20px;
+    }
+
+    .feature-card {
+        border-left: none;
+        border-top: 1px solid #333;
+        /* Top border better for stack */
+        padding: 20px 0;
     }
 
     /* General Layout Fixes */
