@@ -214,9 +214,11 @@ nav {
     transition: opacity 0.4s;
 }
 
-.side-drawer.open .drawer-backdrop {
+.drawer-backdrop.visible {
     opacity: 1;
     pointer-events: auto;
+    z-index: 1500;
+    /* Ensure it covers page but is below drawer (z=2000) */
 }
 
 /* Styles for rest of site */
