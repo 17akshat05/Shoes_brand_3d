@@ -4,7 +4,7 @@ const products = [
     {
         id: 'm1',
         name: 'Velocity Prime',
-        price: 8999,
+        price: 14999,
         category: 'men',
         type: 'running',
         image: 'mens extra footwear/mens.png',
@@ -17,7 +17,7 @@ const products = [
     {
         id: 'm2',
         name: 'Urban Stealth',
-        price: 6499,
+        price: 12499,
         category: 'men',
         type: 'lifestyle',
         image: 'mens extra footwear/mens1.png',
@@ -30,7 +30,7 @@ const products = [
     {
         id: 'm3',
         name: 'Titan Grip',
-        price: 10500,
+        price: 3999,
         category: 'men',
         type: 'training',
         image: 'mens extra footwear/mens2.png',
@@ -43,7 +43,7 @@ const products = [
     {
         id: 'm4',
         name: 'Aero Glide',
-        price: 9200,
+        price: 7999,
         category: 'men',
         type: 'running',
         image: 'mens extra footwear/mens3.png',
@@ -58,7 +58,7 @@ const products = [
     {
         id: 'w1',
         name: 'Luna Racer',
-        price: 7999,
+        price: 12999,
         category: 'women',
         type: 'running',
         image: 'womens extra footwear/womens.png',
@@ -71,7 +71,7 @@ const products = [
     {
         id: 'w2',
         name: 'Cloud Walker',
-        price: 6499,
+        price: 3499,
         category: 'women',
         type: 'lifestyle',
         image: 'womens extra footwear/womens1.png',
@@ -84,7 +84,7 @@ const products = [
     {
         id: 'w3',
         name: 'Flex Trainer',
-        price: 5500,
+        price: 9999,
         category: 'women',
         type: 'training',
         image: 'womens extra footwear/womens2.png',
@@ -99,7 +99,7 @@ const products = [
     {
         id: 'k1',
         name: 'Playground Hero',
-        price: 2999,
+        price: 4499,
         category: 'kids',
         type: 'running',
         image: 'kids extra footwear/kids.png',
@@ -112,7 +112,7 @@ const products = [
     {
         id: 'k2',
         name: 'Velcro Zoom',
-        price: 2499,
+        price: 2999,
         category: 'kids',
         type: 'lifestyle',
         image: 'kids extra footwear/kids1.png',
@@ -125,7 +125,7 @@ const products = [
     {
         id: 'k3',
         name: 'Tiny Trekker',
-        price: 3200,
+        price: 1999,
         category: 'kids',
         type: 'training',
         image: 'kids extra footwear/kids2.png',
