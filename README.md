@@ -1,11 +1,10 @@
 # AIR Footwear - 3D Scroll Experience 👟✨
 
-![AIR Footwear Banner](https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=2070&auto=format&fit=crop)
-<!-- Replace with an actual screenshot of your site if available -->
+![AIR Footwear Preview](./site_preview.png)
 
 > **"Experience the Future of Footwear"**
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/b5c7c9a0-9b8a-4b9a-8b9a-9b8a9b9a9b9a/deploy-status)](https://app.netlify.com/sites/your-site-name/deploys)
+[![Vercel Status](https://therealsujitk-vercel-badge.vercel.app/?app=shoes-brand-3d)](https://shoes-brand-3d.vercel.app)
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
 ![Version](https://img.shields.io/badge/version-1.0.0-green.svg)
 
@@ -32,7 +31,7 @@ Built with a focus on **Performance** and **Vanilla** technologies. No heavy fra
 | **CSS3** | Modern styling, Flexbox, Grid, and Animations. |
 | **Vanilla JS** | Core logic for scroll interaction, cart management, and routing. |
 | **HTML Canvas** | Hardware-accelerated image drawing for the 3D rotation effect. |
-| **Vercel/Netlify** | Fast global deployment. |
+| **Vercel** | Fast global deployment. |
 
 ---
 
